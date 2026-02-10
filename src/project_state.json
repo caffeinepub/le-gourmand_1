@@ -1,0 +1,289 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 13,
+  "summary": "Expand the LE GOURMAND mobile app scope beyond memberships to include a Products catalog screen (3 gourmet items with images) and a Cart screen supporting add/remove items and total price display, while retaining the existing dark luxury design and Firebase authentication approach.",
+  "architectural_notes": [
+    "No payment/checkout/subscription logic (e.g., Stripe) should be implemented; page is informational only.",
+    "Buttons are simple external redirects (same tab) to Tiendup URLs per plan; no in-app payment/subscription flow is added.",
+    "Update color palette: elegant green primary accents; black background; white text; keep existing layout/design otherwise unchanged.",
+    "Only update plan text: add a short description under each plan name; do not change layout/design or add new sections/features.",
+    "Project scope is now a mobile app (not just a single informational web page).",
+    "Authentication must use Firebase (sign up + login).",
+    "App should include Home, Memberships, Profile, and Terms & Conditions screens.",
+    "Use a dark luxury visual style: black as main color with elegant accent colors.",
+    "Products require displaying product images in the UI (provide assets/placeholders as needed).",
+    "Cart functionality should remain client-side only unless backend persistence is explicitly requested later (no checkout/payment flow implied)."
+  ],
+  "known_issues": [
+    "Clicking \"Select plan\" does not open a new window/tab as expected."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-create-a-standalone-membership-plans-page-for-the-le-gourmand-brand-that-displays-three-membership-plan-cards-side-by-side-simple-normal-and-premium",
+      "title": "Create a standalone Membership Plans page for the LE GOURMAND brand that displays three membership plan cards side by side: Simple, Normal, and Premium.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-for-each-plan-card-include-plan-name-a-short-description-a-price-text-display-only-and-a-button-labeled-exactly-suscribirse",
+      "title": "For each plan card, include: plan name, a short description, a price text (display-only), and a button labeled exactly “Suscribirse”.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-visually-mark-the-normal-plan-as-popular-e-g-with-a-badge-chip-while-keeping-it-consistent-with-the-luxury-minimalist-theme",
+      "title": "Visually mark the Normal plan as “Popular” (e.g., with a badge/chip) while keeping it consistent with the luxury minimalist theme.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-luxury-minimalist-dark-visual-theme-consistent-with-the-le-gourmand-brand-across-the-membership-plans-page-typography-spacing-borders-hover-states",
+      "title": "Apply a luxury, minimalist, dark visual theme consistent with the LE GOURMAND brand across the Membership Plans page (typography, spacing, borders, hover states).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-page-is-informational-only-do-not-add-stripe-checkout-payment-processing-subscription-creation-or-any-backend-logic-related-to-payments-subscriptions",
+      "title": "Ensure the page is informational only: do not add Stripe, checkout, payment processing, subscription creation, or any backend logic related to payments/subscriptions.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-membership-plans-page-theme-so-the-overall-background-is-black-text-is-white-and-the-primary-accent-color-is-an-elegant-green-while-keeping-the-existing-layout-and-design-elements-unchanged-cards-spacing-typography-badge-etc",
+      "title": "Update the Membership Plans page theme so the overall background is black, text is white, and the primary/accent color is an elegant green, while keeping the existing layout and design elements unchanged (cards, spacing, typography, badge, etc.).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-change-the-suscribirse-buttons-so-that-each-plan-redirects-in-the-same-browser-tab-to-the-specified-external-url-simple-normal-premium",
+      "title": "Change the “Suscribirse” buttons so that each plan redirects in the same browser tab to the specified external URL (Simple/Normal/Premium).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-any-stripe-checkout-or-payment-related-logic-if-present-and-ensure-the-membership-plans-page-remains-informational-only-with-no-payment-system-added",
+      "title": "Remove any Stripe, checkout, or payment-related logic if present, and ensure the Membership Plans page remains informational-only with no payment system added.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-existing-membership-plans-page-to-keep-the-current-layout-and-design-and-only-change-the-short-description-text-under-each-plan-name-to-the-exact-english-copy-provided-simple-access-to-curated-content-and-basic-member-benefits-normal-everything-in-simple-plus-exclusive-offers-and-priority-access-premium-full-access-to-all-benefits-vip-experiences-and-premium-content-do-not-add-remove-or-restructure-any-ui-sections-components-only-update-the-description-text-values-currently-used-for-each-plan-e-g-in-the-plans-data-in-frontend-src-pages-membershipplanspage-tsx",
+      "title": "Update the existing Membership Plans page to keep the current layout and design and only change the short description text under each plan name to the exact English copy provided:\n- Simple: \"Access to curated content and basic member benefits.\"\n- Normal: \"Everything in Simple, plus exclusive offers and priority access.\"\n- Premium: \"Full access to all benefits, VIP experiences, and premium content.\"\n\nDo not add, remove, or restructure any UI sections/components; only update the description text values currently used for each plan (e.g., in the plans data in frontend/src/pages/MembershipPlansPage.tsx).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-single-page-app-currently-rendering-only-membershipplanspage-with-an-app-shell-that-supports-navigating-between-these-screens-home-memberships-profile-and-terms-conditions-optimized-for-mobile-sized-viewports",
+      "title": "Replace the single-page app (currently rendering only `MembershipPlansPage`) with an app shell that supports navigating between these screens: Home, Memberships, Profile, and Terms & Conditions, optimized for mobile-sized viewports.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-user-authentication-for-the-app-using-internet-identity-supported-on-this-platform-and-provide-a-login-logout-experience-that-covers-the-user-s-requested-sign-up-login-flow-as-closely-as-possible-single-sign-in-flow-plus-sign-out",
+      "title": "Implement user authentication for the app using Internet Identity (supported on this platform) and provide a login/logout experience that covers the user's requested sign up/login flow as closely as possible (single 'Sign in' flow plus 'Sign out').",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-home-screen-with-premium-branding-copy-and-layout-for-a-private-gourmet-membership-club-using-english-for-all-user-facing-text",
+      "title": "Create a Home screen with premium branding copy and layout for a private gourmet membership club, using English for all user-facing text.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-memberships-screen-that-displays-exactly-three-membership-plans-with-the-following-names-and-prices-simple-50-normal-200-premium-350-presented-in-a-dark-luxury-style-consistent-with-the-app-theme",
+      "title": "Create a Memberships screen that displays exactly three membership plans with the following names and prices: Simple $50, Normal $200, Premium $350, presented in a dark luxury style consistent with the app theme.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-ability-for-an-authenticated-user-to-select-a-membership-plan-in-the-memberships-screen-persist-that-selection-to-the-backend-keyed-by-the-user-s-principal-and-reflect-the-selected-membership-type-in-the-profile-screen",
+      "title": "Add the ability for an authenticated user to select a membership plan in the Memberships screen, persist that selection to the backend keyed by the user's principal, and reflect the selected membership type in the Profile screen.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-profile-screen-that-displays-1-the-current-user-s-name-and-2-their-membership-type-if-no-explicit-name-is-set-display-a-reasonable-default-derived-from-the-authenticated-identity-e-g-principal-text",
+      "title": "Implement a Profile screen that displays (1) the current user's name and (2) their membership type. If no explicit name is set, display a reasonable default derived from the authenticated identity (e.g., principal text).",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-terms-conditions-screen-with-static-english-content-and-make-it-reachable-via-navigation",
+      "title": "Implement a Terms & Conditions screen with static English content and make it reachable via navigation.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-dark-luxury-design-style-across-all-new-screens-using-black-as-the-main-color-and-elegant-accent-colors-consistent-with-the-existing-le-gourmand-theme-tokens",
+      "title": "Apply a dark, luxury design style across all new screens using black as the main color and elegant accent colors, consistent with the existing LE GOURMAND theme tokens.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-two-new-app-routes-screens-a-products-screen-and-a-cart-screen-and-make-both-reachable-via-the-existing-app-shell-navigation",
+      "title": "Add two new app routes/screens: a Products screen and a Cart screen, and make both reachable via the existing app shell navigation.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-products-screen-that-renders-a-simple-catalog-of-exactly-three-gourmet-products-each-showing-product-image-name-description-price-and-an-add-to-cart-button-button-label-must-be-exactly-add-to-cart",
+      "title": "Implement a Products screen that renders a simple catalog of exactly three gourmet products, each showing: product image, name, description, price, and an “Add to Cart” button (button label must be exactly “Add to Cart”).",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-cart-screen-that-allows-users-to-view-products-added-to-the-cart-remove-items-and-see-a-total-price-across-all-cart-items",
+      "title": "Implement a Cart screen that allows users to view products added to the cart, remove items, and see a total price across all cart items.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-shared-client-side-cart-state-so-that-items-added-on-the-products-screen-appear-on-the-cart-screen-without-requiring-a-backend-call",
+      "title": "Add shared client-side cart state so that items added on the Products screen appear on the Cart screen without requiring a backend call.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-and-use-three-static-product-images-as-generated-assets-stored-under-frontend-public-assets-generated-and-render-them-in-the-products-screen-and-optionally-in-the-cart-screen-via-standard-static-asset-paths",
+      "title": "Add and use three static product images as generated assets stored under `frontend/public/assets/generated/`, and render them in the Products screen (and optionally in the Cart screen) via standard static asset paths.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-uploaded-logo-image-logo-big-png-as-a-static-frontend-asset-and-display-it-in-the-main-app-header-appshell-alongside-the-brand-name-keeping-the-existing-dark-luxury-styling",
+      "title": "Add the uploaded logo image (\"logo big.png\") as a static frontend asset and display it in the main app header (AppShell) alongside the brand name, keeping the existing dark luxury styling.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-select-plan-button-behavior-on-the-memberships-screen-so-that-clicking-it-opens-the-plan-destination-in-a-new-browser-tab-window-ensure-the-new-tab-window-navigation-works-reliably-no-op-bug-while-keeping-the-existing-membership-selection-persistence-behavior-intact",
+      "title": "Fix the \"Select Plan\" button behavior on the Memberships screen so that clicking it opens the plan destination in a new browser tab/window; ensure the new tab/window navigation works reliably (no-op bug), while keeping the existing membership selection persistence behavior intact.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create LE GOURMAND Membership Plans page with three side-by-side cards (Simple, Normal marked 'Popular', Premium) including name, short description, visual price text, and 'Suscribirse' button; informational only with no payment/subscription logic; luxury minimalist dark theme.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Update Membership Plans page styling to elegant green accents with black background and white text, remove any Stripe/checkout/payment logic if present, and make “Suscribirse” buttons redirect in the same tab to the provided external URLs for each plan (no payment system added).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add short descriptions under each plan name on the existing Membership Plans page (Simple/Normal/Premium) using the provided exact copy; keep layout/design unchanged and do not add any new sections/features.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Create a mobile app for LE GOURMAND with a dark, luxury design style (black main color with elegant accents) and premium branding for a private gourmet membership club.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Implement user authentication (sign up and login) using Firebase for the LE GOURMAND mobile app.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Add core app screens: Home screen (premium branding), Memberships screen with three plans and prices (Simple $50, Normal $200, Premium $350), Profile screen showing user name and membership type, and a Terms & Conditions screen.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Extend the Motoko backend (`backend/main.mo`) to support storing and retrieving a user profile record keyed by caller principal, including at minimum: membershipType (Simple|Normal|Premium|None) and an optional displayName.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Add a Products screen featuring a simple catalog of exactly three gourmet products; each product shows an image, name, description, price, and an “Add to Cart” button.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Add a Cart screen where users can view products added to cart, remove items, and see a total price.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Add the user's logo to the app UI (brand/header) while keeping the existing dark luxury design style.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Update the Membership plan selection behavior so clicking \"Select plan\" opens the intended destination in a new window/tab.",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "LE GOURMAND",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

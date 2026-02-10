@@ -1,0 +1,44 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-the-uploaded-logo-image-logo-big-png-as-a-static-frontend-asset-and-display-it-in-the-main-app-header-appshell-alongside-the-brand-name-keeping-the-existing-dark-luxury-styling",
+      "featureTitle": "Add the uploaded logo image (\"logo big.png\") as a static frontend asset and display it in the main app header (AppShell) alongside the brand name, keeping the existing dark luxury styling.",
+      "files": [
+        "frontend/src/components/AppShell.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-24"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fix-the-select-plan-button-behavior-on-the-memberships-screen-so-that-clicking-it-opens-the-plan-destination-in-a-new-browser-tab-window-ensure-the-new-tab-window-navigation-works-reliably-no-op-bug-while-keeping-the-existing-membership-selection-persistence-behavior-intact",
+      "featureTitle": "Fix the \"Select Plan\" button behavior on the Memberships screen so that clicking it opens the plan destination in a new browser tab/window; ensure the new tab/window navigation works reliably (no-op bug), while keeping the existing membership selection persistence behavior intact.",
+      "files": [
+        "frontend/src/lib/membershipPlanUrls.ts",
+        "frontend/src/pages/MembershipsPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-25"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

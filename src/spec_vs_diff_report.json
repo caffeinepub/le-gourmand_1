@@ -1,0 +1,26 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-10T02:20:02.865Z",
+  "summary": "REQ-25 appears implemented by opening the correct external plan URLs in a new tab via `window.open` while still persisting membership selection. REQ-24 is partially implemented in `AppShell` (logo rendered with English alt text and sizing), but the actual static asset file \"logo big.png\" is not shown as added in the diff summary.",
+  "missing_requirements": [
+    {
+      "id": "REQ-24",
+      "requirement": "Include the uploaded file \"logo big.png\" in the frontend static assets (served directly by the frontend, not via backend).",
+      "reason": "`AppShell` references `/assets/logo big.png`, but the diff summary does not show the image file being added anywhere in the repository, so the asset may be missing and the path may 404 at runtime.",
+      "evidence": [
+        "frontend/src/components/AppShell.tsx (references: src=\"/assets/logo big.png\")",
+        "File diff summary: ADDED FILES list does not include \"logo big.png\""
+      ]
+    }
+  ],
+  "hallucinated_features": [],
+  "confidence": 0.74,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/AppShell.tsx",
+    "frontend/src/lib/membershipPlanUrls.ts",
+    "frontend/src/pages/MembershipsPage.tsx",
+    "project_state.json"
+  ]
+}

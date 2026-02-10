@@ -1,0 +1,52 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Logo in AppShell header + Membership Select Plan opens in new tab",
+  "requirements": [
+    {
+      "id": "REQ-24",
+      "summary": "Add the uploaded logo as a static asset and render it in the AppShell header next to the brand name without breaking the dark luxury layout or home navigation.",
+      "acceptanceCriteria": [
+        "The uploaded file \"logo big.png\" is included in the frontend static assets (served directly by the frontend, not via backend).",
+        "The AppShell header (frontend/src/components/AppShell.tsx) renders the logo image with an English alt text (e.g., \"LE GOURMAND logo\").",
+        "The header remains visually consistent with the current dark luxury theme (no layout break on mobile; logo is constrained to a reasonable height and does not overflow).",
+        "Clicking the header/brand area continues to navigate to Home as it does today."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/logo big.png",
+          "operation": "create",
+          "description": "Add the uploaded image file as a static public asset so it is served directly by the frontend (no backend involvement)."
+        },
+        {
+          "path": "frontend/src/components/AppShell.tsx",
+          "operation": "modify",
+          "description": "Update the header brand area to include the logo image (sourced from the public asset) alongside the \"LE GOURMAND\" text; ensure the entire brand area remains clickable to navigate to Home, and constrain logo size with existing Tailwind styling so it does not overflow on mobile."
+        }
+      ]
+    },
+    {
+      "id": "REQ-25",
+      "summary": "Fix Memberships \"Select Plan\" to reliably open the external plan URL in a new tab while preserving existing membership selection persistence and login behavior.",
+      "acceptanceCriteria": [
+        "On the Memberships page (frontend/src/pages/MembershipsPage.tsx), clicking \"Select Plan\" opens a new tab/window via window.open (or equivalent) rather than staying in the same tab.",
+        "The destination URL opened for each plan is mapped correctly using these exact URLs: Simple: https://le-gourmand.tiendup.com/p/membresia-simple, Normal: https://le-gourmand.tiendup.com/p/suscripcion-normal, Premium: https://le-gourmand.tiendup.com/p/membresia-premium.",
+        "After clicking \"Select Plan\", the app still performs the existing membership selection mutation (persisting membership type for the signed-in user) and continues to show \"Current Plan\" when appropriate.",
+        "If the user is not signed in, the existing sign-in prompt/login flow still occurs; the new tab/window behavior does not break the login flow or crash the page.",
+        "No Stripe/checkout/payment processing is added; the change is limited to opening the external plan URL in a new tab/window and maintaining the existing membership selection logic."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/lib/membershipPlanUrls.ts",
+          "operation": "create",
+          "description": "Create a small utility that maps MembershipType values to the exact external plan URLs required by the BuildRequest, to avoid duplicated strings and ensure correctness."
+        },
+        {
+          "path": "frontend/src/pages/MembershipsPage.tsx",
+          "operation": "modify",
+          "description": "Update the \"Select Plan\" click handler to open the mapped plan URL in a new tab/window (using window.open or equivalent) in a way that avoids the current no-op bug (e.g., by opening synchronously on click), while keeping the existing login prompt behavior for signed-out users and preserving the existing membership selection mutation + \"Current Plan\" state logic."
+        }
+      ]
+    }
+  ]
+}
