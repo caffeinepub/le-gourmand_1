@@ -5,11 +5,12 @@ import { useCart } from '../cart/useCart';
 import { products } from '../data/products';
 import { formatCurrency } from '../lib/format';
 import { toast } from 'sonner';
+import type { Product } from '../cart/cartTypes';
 
 export default function ProductsPage() {
   const { addToCart } = useCart();
 
-  const handleAddToCart = (product: typeof products[0]) => {
+  const handleAddToCart = (product: Product) => {
     addToCart(product);
     toast.success(`${product.name} added to cart`);
   };

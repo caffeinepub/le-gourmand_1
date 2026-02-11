@@ -1,50 +1,139 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Logo in AppShell header + Membership Select Plan opens in new tab",
+  "title": "Expand gourmet products catalog with distinct placeholder images",
   "requirements": [
     {
-      "id": "REQ-24",
-      "summary": "Add the uploaded logo as a static asset and render it in the AppShell header next to the brand name without breaking the dark luxury layout or home navigation.",
+      "id": "REQ-26",
+      "summary": "Expand the static products catalog data to include all user-provided gourmet products without changing the Products page layout.",
       "acceptanceCriteria": [
-        "The uploaded file \"logo big.png\" is included in the frontend static assets (served directly by the frontend, not via backend).",
-        "The AppShell header (frontend/src/components/AppShell.tsx) renders the logo image with an English alt text (e.g., \"LE GOURMAND logo\").",
-        "The header remains visually consistent with the current dark luxury theme (no layout break on mobile; logo is constrained to a reasonable height and does not overflow).",
-        "Clicking the header/brand area continues to navigate to Home as it does today."
+        "`frontend/src/data/products.ts` contains the original 3 products plus new entries for each user-provided product name: Beluga caviar; Jamón ibérico de bellota; Duck foie gras; Premium saffron threads; Manuka honey UMF 20+; Specialty microlot coffee; Silver Needle white tea; Madagascar Bourbon vanilla; Alba white truffle; Smoked sea salt flakes; Traditional Balsamic Vinegar of Modena DOP; Black truffle oil; Artisanal bronze-cut pasta; Aged Carnaroli rice; Wild berry gourmet jam; French whole-grain mustard; Natural fermentation artisanal panettone.",
+        "Each new product entry includes all required `Product` fields (`id`, `name`, `description`, `price`, `imageSrc`, `altText`) as defined in `frontend/src/cart/cartTypes.ts`.",
+        "Each new product has a unique, stable `id` suitable for use as a React key and cart identifier (no duplicates across the full catalog).",
+        "The Products screen (`frontend/src/pages/ProductsPage.tsx`) renders the expanded catalog by mapping over `products` with no runtime errors."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/logo big.png",
-          "operation": "create",
-          "description": "Add the uploaded image file as a static public asset so it is served directly by the frontend (no backend involvement)."
-        },
-        {
-          "path": "frontend/src/components/AppShell.tsx",
+          "path": "frontend/src/data/products.ts",
           "operation": "modify",
-          "description": "Update the header brand area to include the logo image (sourced from the public asset) alongside the \"LE GOURMAND\" text; ensure the entire brand area remains clickable to navigate to Home, and constrain logo size with existing Tailwind styling so it does not overflow on mobile."
+          "description": "Append new Product entries for: Beluga caviar; Jamón ibérico de bellota; Duck foie gras; Premium saffron threads; Manuka honey UMF 20+; Specialty microlot coffee; Silver Needle white tea; Madagascar Bourbon vanilla; Alba white truffle; Smoked sea salt flakes; Traditional Balsamic Vinegar of Modena DOP; Black truffle oil; Artisanal bronze-cut pasta; Aged Carnaroli rice; Wild berry gourmet jam; French whole-grain mustard; Natural fermentation artisanal panettone. Ensure each entry includes `id`, `name`, `description`, `price`, `imageSrc`, and unique descriptive `altText`, and that all `id` values are unique across the entire array."
         }
       ]
     },
     {
-      "id": "REQ-25",
-      "summary": "Fix Memberships \"Select Plan\" to reliably open the external plan URL in a new tab while preserving existing membership selection persistence and login behavior.",
+      "id": "REQ-27",
+      "summary": "Add distinct placeholder images as static assets for each newly added product and reference them from the catalog data.",
       "acceptanceCriteria": [
-        "On the Memberships page (frontend/src/pages/MembershipsPage.tsx), clicking \"Select Plan\" opens a new tab/window via window.open (or equivalent) rather than staying in the same tab.",
-        "The destination URL opened for each plan is mapped correctly using these exact URLs: Simple: https://le-gourmand.tiendup.com/p/membresia-simple, Normal: https://le-gourmand.tiendup.com/p/suscripcion-normal, Premium: https://le-gourmand.tiendup.com/p/membresia-premium.",
-        "After clicking \"Select Plan\", the app still performs the existing membership selection mutation (persisting membership type for the signed-in user) and continues to show \"Current Plan\" when appropriate.",
-        "If the user is not signed in, the existing sign-in prompt/login flow still occurs; the new tab/window behavior does not break the login flow or crash the page.",
-        "No Stripe/checkout/payment processing is added; the change is limited to opening the external plan URL in a new tab/window and maintaining the existing membership selection logic."
+        "For each newly added product, `imageSrc` points to a unique path under `/assets/generated/` and the referenced file exists under `frontend/public/assets/generated/`.",
+        "All new product images load correctly in the Products screen (no broken image links).",
+        "Each new product includes a specific, descriptive `altText` that matches the product shown (not reused across multiple products)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/lib/membershipPlanUrls.ts",
+          "path": "frontend/public/assets/generated/product-beluga-caviar.dim_1024x1024.png",
           "operation": "create",
-          "description": "Create a small utility that maps MembershipType values to the exact external plan URLs required by the BuildRequest, to avoid duplicated strings and ensure correctness."
+          "description": "Add the generated placeholder image asset for Beluga caviar at the exact required path."
         },
         {
-          "path": "frontend/src/pages/MembershipsPage.tsx",
+          "path": "frontend/public/assets/generated/product-jamon-iberico-bellota.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Jamón ibérico de bellota at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-duck-foie-gras.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Duck foie gras at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-saffron-threads.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Premium saffron threads at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-manuka-honey-umf20.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Manuka honey UMF 20+ at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-microlot-coffee.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Specialty microlot coffee at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-silver-needle-tea.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Silver Needle white tea at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-madagascar-vanilla.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Madagascar Bourbon vanilla at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-alba-white-truffle.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Alba white truffle at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-smoked-sea-salt-flakes.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Smoked sea salt flakes at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-traditional-balsamic-vinegar-modena-dop.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Traditional balsamic vinegar (Modena DOP) at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-black-truffle-oil.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Black truffle oil at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-bronze-cut-pasta.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Artisanal bronze-cut pasta at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-aged-carnaroli-rice.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Aged Carnaroli rice at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-wild-berry-jam.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Wild berry gourmet jam at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-french-whole-grain-mustard.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for French whole-grain mustard at the exact required path."
+        },
+        {
+          "path": "frontend/public/assets/generated/product-artisanal-panettone.dim_1024x1024.png",
+          "operation": "create",
+          "description": "Add the generated placeholder image asset for Artisanal panettone at the exact required path."
+        },
+        {
+          "path": "frontend/src/data/products.ts",
           "operation": "modify",
-          "description": "Update the \"Select Plan\" click handler to open the mapped plan URL in a new tab/window (using window.open or equivalent) in a way that avoids the current no-op bug (e.g., by opening synchronously on click), while keeping the existing login prompt behavior for signed-out users and preserving the existing membership selection mutation + \"Current Plan\" state logic."
+          "description": "Ensure each newly added product’s `imageSrc` points to a unique existing asset under `/assets/generated/` matching: /assets/generated/product-beluga-caviar.dim_1024x1024.png; /assets/generated/product-jamon-iberico-bellota.dim_1024x1024.png; /assets/generated/product-duck-foie-gras.dim_1024x1024.png; /assets/generated/product-saffron-threads.dim_1024x1024.png; /assets/generated/product-manuka-honey-umf20.dim_1024x1024.png; /assets/generated/product-microlot-coffee.dim_1024x1024.png; /assets/generated/product-silver-needle-tea.dim_1024x1024.png; /assets/generated/product-madagascar-vanilla.dim_1024x1024.png; /assets/generated/product-alba-white-truffle.dim_1024x1024.png; /assets/generated/product-smoked-sea-salt-flakes.dim_1024x1024.png; /assets/generated/product-traditional-balsamic-vinegar-modena-dop.dim_1024x1024.png; /assets/generated/product-black-truffle-oil.dim_1024x1024.png; /assets/generated/product-bronze-cut-pasta.dim_1024x1024.png; /assets/generated/product-aged-carnaroli-rice.dim_1024x1024.png; /assets/generated/product-wild-berry-jam.dim_1024x1024.png; /assets/generated/product-french-whole-grain-mustard.dim_1024x1024.png; /assets/generated/product-artisanal-panettone.dim_1024x1024.png. Ensure each new product also has distinct, descriptive `altText`."
+        }
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "summary": "Ensure newly added products work with existing client-side cart state, add/remove actions, and totals without changing cart behavior.",
+      "acceptanceCriteria": [
+        "Clicking the “Add to Cart” button on any newly added product adds that product to the cart and shows the existing success toast pattern.",
+        "The Cart screen displays newly added products correctly (name, quantity, and totals behave the same as for the original products).",
+        "Removing newly added products from the cart works and updates totals correctly."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ProductsPage.tsx",
+          "operation": "modify",
+          "description": "Tighten typing for `handleAddToCart` to use the shared `Product` type (from `frontend/src/cart/cartTypes.ts`) rather than `typeof products[0]`, keeping the existing add-to-cart + success toast behavior unchanged for all products."
         }
       ]
     }

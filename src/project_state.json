@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 13,
-  "summary": "Expand the LE GOURMAND mobile app scope beyond memberships to include a Products catalog screen (3 gourmet items with images) and a Cart screen supporting add/remove items and total price display, while retaining the existing dark luxury design and Firebase authentication approach.",
+  "projectStateVersion": 15,
+  "summary": "Expand the LE GOURMAND mobile app Products catalog beyond the initial 3 items by adding 20 additional gourmet products to the Products screen, each with its own distinct placeholder image, while keeping the existing dark luxury design and client-side cart behavior.",
   "architectural_notes": [
     "No payment/checkout/subscription logic (e.g., Stripe) should be implemented; page is informational only.",
     "Buttons are simple external redirects (same tab) to Tiendup URLs per plan; no in-app payment/subscription flow is added.",
@@ -17,7 +17,8 @@
   "known_issues": [
     "Clicking \"Select plan\" does not open a new window/tab as expected."
   ],
-  "isFixRequest": true,
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Beluga caviar placeholder product image (product-beluga-caviar.dim_1024x1024.png)\n- Jamón ibérico de bellota placeholder product image (product-jamon-iberico-bellota.dim_1024x1024.png)\n- Duck foie gras placeholder product image (product-duck-foie-gras.dim_1024x1024.png)\n- Premium saffron threads placeholder product image (product-saffron-threads.dim_1024x1024.png)\n- Manuka honey placeholder product image (product-manuka-honey-umf20.dim_1024x1024.png)\n- Specialty microlot coffee placeholder product image (product-microlot-coffee.dim_1024x1024.png)\n- Silver Needle white tea placeholder product image (product-silver-needle-tea.dim_1024x1024.png)\n- Madagascar Bourbon vanilla placeholder product image (product-madagascar-vanilla.dim_1024x1024.png)\n- Alba white truffle placeholder product image (product-alba-white-truffle.dim_1024x1024.png)\n- Smoked sea salt flakes placeholder product image (product-smoked-sea-salt-flakes.dim_1024x1024.png)\n- Traditional balsamic vinegar placeholder product image (product-traditional-balsamic-vinegar-modena-dop.dim_1024x1024.png)\n- Black truffle oil placeholder product image (product-black-truffle-oil.dim_1024x1024.png)\n- Artisanal bronze-cut pasta placeholder product image (product-bronze-cut-pasta.dim_1024x1024.png)\n- Aged Carnaroli rice placeholder product image (product-aged-carnaroli-rice.dim_1024x1024.png)\n- Wild berry gourmet jam placeholder product image (product-wild-berry-jam.dim_1024x1024.png)\n- French whole-grain mustard placeholder product image (product-french-whole-grain-mustard.dim_1024x1024.png)\n- Artisanal panettone placeholder product image (product-artisanal-panettone.dim_1024x1024.png)",
   "existing_features": [
     {
       "id": "feature-create-a-standalone-membership-plans-page-for-the-le-gourmand-brand-that-displays-three-membership-plan-cards-side-by-side-simple-normal-and-premium",
@@ -210,6 +211,30 @@
         "REQ-25"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-expand-the-static-products-catalog-in-frontend-src-data-products-ts-by-adding-all-additional-gourmet-products-provided-by-the-user-in-addition-to-the-existing-3-products-so-they-appear-in-the-existing-products-screen-without-any-ui-restructuring",
+      "title": "Expand the static products catalog in `frontend/src/data/products.ts` by adding all additional gourmet products provided by the user (in addition to the existing 3 products), so they appear in the existing Products screen without any UI restructuring.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-distinct-placeholder-images-for-each-newly-added-product-as-static-assets-under-frontend-public-assets-generated-and-reference-them-from-the-corresponding-imagesrc-fields-in-frontend-src-data-products-ts",
+      "title": "Add distinct placeholder images for each newly added product as static assets under `frontend/public/assets/generated/`, and reference them from the corresponding `imageSrc` fields in `frontend/src/data/products.ts`.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-keep-existing-cart-behavior-intact-so-that-any-of-the-newly-added-products-can-be-added-to-the-cart-from-the-products-screen-and-viewed-totaled-in-the-cart-screen-using-the-existing-shared-client-side-cart-state",
+      "title": "Keep existing cart behavior intact so that any of the newly added products can be added to the cart from the Products screen and viewed/totaled in the Cart screen using the existing shared client-side cart state.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -278,6 +303,12 @@
     {
       "id": "AR-18",
       "summary": "Update the Membership plan selection behavior so clicking \"Select plan\" opens the intended destination in a new window/tab.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Expand the Products screen catalog by adding 20 additional gourmet products (as provided by the user) and ensure each new product has a distinct placeholder image so all items render properly in the UI.",
       "reqIds": [],
       "status": "pending"
     }

@@ -1,38 +1,78 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-10T02:20:02.868Z",
+  "generatedAt": "2026-02-10T17:59:34.330Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 3,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-24",
-        "summary": "Add the uploaded logo image (\"logo big.png\") as a static frontend asset and display it in the main app header (AppShell) alongside the brand name, keeping the existing dark luxury styling.",
+        "id": "REQ-26",
+        "summary": "Expand the static products catalog in `frontend/src/data/products.ts` by adding all additional gourmet products provided by the user (in addition to the existing 3 products), so they appear in the existing Products screen without any UI restructuring.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/logo big.png",
-          "frontend/src/components/AppShell.tsx"
+          "frontend/src/data/products.ts"
         ],
         "matchedFiles": [
-          "frontend/src/components/AppShell.tsx"
+          "frontend/src/data/products.ts"
         ]
       },
       {
-        "id": "REQ-25",
-        "summary": "Fix the \"Select Plan\" button behavior on the Memberships screen so that clicking it opens the plan destination in a new browser tab/window; ensure the new tab/window navigation works reliably (no-op bug), while keeping the existing membership selection persistence behavior intact.",
+        "id": "REQ-27",
+        "summary": "Add distinct placeholder images for each newly added product as static assets under `frontend/public/assets/generated/`, and reference them from the corresponding `imageSrc` fields in `frontend/src/data/products.ts`.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/lib/membershipPlanUrls.ts",
-          "frontend/src/pages/MembershipsPage.tsx"
+          "frontend/public/assets/generated/product-beluga-caviar.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-jamon-iberico-bellota.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-duck-foie-gras.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-saffron-threads.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-manuka-honey-umf20.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-microlot-coffee.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-silver-needle-tea.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-madagascar-vanilla.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-alba-white-truffle.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-smoked-sea-salt-flakes.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-traditional-balsamic-vinegar-modena-dop.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-black-truffle-oil.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-bronze-cut-pasta.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-aged-carnaroli-rice.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-wild-berry-jam.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-french-whole-grain-mustard.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-artisanal-panettone.dim_1024x1024.png",
+          "frontend/src/data/products.ts"
         ],
         "matchedFiles": [
-          "frontend/src/lib/membershipPlanUrls.ts",
-          "frontend/src/pages/MembershipsPage.tsx"
+          "frontend/public/assets/generated/product-beluga-caviar.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-jamon-iberico-bellota.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-duck-foie-gras.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-saffron-threads.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-manuka-honey-umf20.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-microlot-coffee.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-silver-needle-tea.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-madagascar-vanilla.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-alba-white-truffle.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-smoked-sea-salt-flakes.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-traditional-balsamic-vinegar-modena-dop.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-black-truffle-oil.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-bronze-cut-pasta.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-aged-carnaroli-rice.dim_1024x1024.png",
+          "frontend/public/assets/generated/product-wild-berry-jam.dim_1024x1024.png",
+          "frontend/src/data/products.ts"
+        ]
+      },
+      {
+        "id": "REQ-28",
+        "summary": "Keep existing cart behavior intact so that any of the newly added products can be added to the cart from the Products screen and viewed/totaled in the Cart screen using the existing shared client-side cart state.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/ProductsPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/ProductsPage.tsx"
         ]
       }
     ]
@@ -42,9 +82,23 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/AppShell.tsx",
-    "frontend/src/lib/membershipPlanUrls.ts",
-    "frontend/src/pages/MembershipsPage.tsx",
+    "frontend/public/assets/generated/product-aged-carnaroli-rice.dim_1024x1024.png",
+    "frontend/public/assets/generated/product-alba-white-truffle.dim_1024x1024.png",
+    "frontend/public/assets/generated/product-beluga-caviar.dim_1024x1024.png",
+    "frontend/public/assets/generated/product-black-truffle-oil.dim_1024x1024.png",
+    "frontend/public/assets/generated/product-bronze-cut-pasta.dim_1024x1024.png",
+    "frontend/public/assets/generated/product-duck-foie-gras.dim_1024x1024.png",
+    "frontend/public/assets/generated/product-jamon-iberico-bellota.dim_1024x1024.png",
+    "frontend/public/assets/generated/product-madagascar-vanilla.dim_1024x1024.png",
+    "frontend/public/assets/generated/product-manuka-honey-umf20.dim_1024x1024.png",
+    "frontend/public/assets/generated/product-microlot-coffee.dim_1024x1024.png",
+    "frontend/public/assets/generated/product-saffron-threads.dim_1024x1024.png",
+    "frontend/public/assets/generated/product-silver-needle-tea.dim_1024x1024.png",
+    "frontend/public/assets/generated/product-smoked-sea-salt-flakes.dim_1024x1024.png",
+    "frontend/public/assets/generated/product-traditional-balsamic-vinegar-modena-dop.dim_1024x1024.png",
+    "frontend/public/assets/generated/product-wild-berry-jam.dim_1024x1024.png",
+    "frontend/src/data/products.ts",
+    "frontend/src/pages/ProductsPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

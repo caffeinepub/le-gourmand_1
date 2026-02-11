@@ -1,10 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Add the uploaded brand logo to the app header and fix the Memberships “Select Plan” button so it reliably opens the correct plan page in a new tab.
+**Goal:** Expand the Products catalog with the user-provided gourmet items and ensure each new item has its own distinct placeholder image while keeping existing cart behavior unchanged.
 
 **Planned changes:**
-- Add `logo big.png` as a static frontend asset and render it in the main AppShell header alongside the brand name, keeping the current dark luxury styling and responsive layout.
-- Update the Memberships page so “Select Plan” opens the correct external plan URL in a new browser tab/window while preserving the existing membership selection persistence and current-plan UI behavior, including the existing login prompt flow for signed-out users.
+- Add new product entries to `frontend/src/data/products.ts` for: Beluga caviar; Jamón ibérico de bellota; Duck foie gras; Premium saffron threads; Manuka honey UMF 20+; Specialty microlot coffee; Silver Needle white tea; Madagascar Bourbon vanilla; Alba white truffle; Smoked sea salt flakes; Traditional Balsamic Vinegar of Modena DOP; Black truffle oil; Artisanal bronze-cut pasta; Aged Carnaroli rice; Wild berry gourmet jam; French whole-grain mustard; Natural fermentation artisanal panettone.
+- Ensure each new product includes all required `Product` fields (`id`, `name`, `description`, `price`, `imageSrc`, `altText`) and uses a unique, stable `id` across the full catalog.
+- Add a unique placeholder image asset for each newly added product under `frontend/public/assets/generated/` and reference it via `/assets/generated/...` in `imageSrc`.
+- Keep the existing Products page rendering pattern and cart interactions intact so new products can be added/removed and totaled like existing products.
 
-**User-visible outcome:** The header shows the LE GOURMAND logo next to the brand name, and selecting a membership plan opens the appropriate plan page in a new tab without breaking existing membership selection or sign-in behavior.
+**User-visible outcome:** The Products screen shows the original items plus the added gourmet products, each with its own image, and users can add/remove these new products in the cart with totals updating normally.

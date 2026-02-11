@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-the-uploaded-logo-image-logo-big-png-as-a-static-frontend-asset-and-display-it-in-the-main-app-header-appshell-alongside-the-brand-name-keeping-the-existing-dark-luxury-styling",
-      "featureTitle": "Add the uploaded logo image (\"logo big.png\") as a static frontend asset and display it in the main app header (AppShell) alongside the brand name, keeping the existing dark luxury styling.",
+      "featureId": "feature-expand-the-static-products-catalog-in-frontend-src-data-products-ts-by-adding-all-additional-gourmet-products-provided-by-the-user-in-addition-to-the-existing-3-products-so-they-appear-in-the-existing-products-screen-without-any-ui-restructuring",
+      "featureTitle": "Expand the static products catalog in `frontend/src/data/products.ts` by adding all additional gourmet products provided by the user (in addition to the existing 3 products), so they appear in the existing Products screen without any UI restructuring.",
       "files": [
-        "frontend/src/components/AppShell.tsx"
+        "frontend/src/data/products.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -16,16 +16,15 @@
         "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-24"
+        "REQ-26"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-fix-the-select-plan-button-behavior-on-the-memberships-screen-so-that-clicking-it-opens-the-plan-destination-in-a-new-browser-tab-window-ensure-the-new-tab-window-navigation-works-reliably-no-op-bug-while-keeping-the-existing-membership-selection-persistence-behavior-intact",
-      "featureTitle": "Fix the \"Select Plan\" button behavior on the Memberships screen so that clicking it opens the plan destination in a new browser tab/window; ensure the new tab/window navigation works reliably (no-op bug), while keeping the existing membership selection persistence behavior intact.",
+      "featureId": "feature-add-distinct-placeholder-images-for-each-newly-added-product-as-static-assets-under-frontend-public-assets-generated-and-reference-them-from-the-corresponding-imagesrc-fields-in-frontend-src-data-products-ts",
+      "featureTitle": "Add distinct placeholder images for each newly added product as static assets under `frontend/public/assets/generated/`, and reference them from the corresponding `imageSrc` fields in `frontend/src/data/products.ts`.",
       "files": [
-        "frontend/src/lib/membershipPlanUrls.ts",
-        "frontend/src/pages/MembershipsPage.tsx"
+        "frontend/src/data/products.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -36,7 +35,26 @@
         "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-25"
+        "REQ-27"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-keep-existing-cart-behavior-intact-so-that-any-of-the-newly-added-products-can-be-added-to-the-cart-from-the-products-screen-and-viewed-totaled-in-the-cart-screen-using-the-existing-shared-client-side-cart-state",
+      "featureTitle": "Keep existing cart behavior intact so that any of the newly added products can be added to the cart from the Products screen and viewed/totaled in the Cart screen using the existing shared client-side cart state.",
+      "files": [
+        "frontend/src/pages/ProductsPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-28"
       ],
       "confidence": "high"
     }

@@ -1,60 +1,93 @@
 {
   "kind": "build_request",
-  "title": "Add uploaded logo to app header and fix Select Plan to open in a new tab",
-  "priority": "normal",
+  "title": "Add the user-provided additional gourmet products to the Products catalog with distinct placeholder images",
+  "priority": "high",
   "requirements": [
     {
-      "id": "REQ-24",
-      "text": "Add the uploaded logo image (\"logo big.png\") as a static frontend asset and display it in the main app header (AppShell) alongside the brand name, keeping the existing dark luxury styling.",
+      "id": "REQ-26",
+      "text": "Expand the static products catalog in `frontend/src/data/products.ts` by adding all additional gourmet products provided by the user (in addition to the existing 3 products), so they appear in the existing Products screen without any UI restructuring.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-3"
+          "msg-1"
         ],
         "quotes": [
-          "I would like my logo on it"
+          "add them to the products window"
         ]
       },
       "acceptanceCriteria": [
-        "The uploaded file \"logo big.png\" is included in the frontend static assets (served directly by the frontend, not via backend).",
-        "The AppShell header (frontend/src/components/AppShell.tsx) renders the logo image with an English alt text (e.g., \"LE GOURMAND logo\").",
-        "The header remains visually consistent with the current dark luxury theme (no layout break on mobile; logo is constrained to a reasonable height and does not overflow).",
-        "Clicking the header/brand area continues to navigate to Home as it does today."
+        "`frontend/src/data/products.ts` contains the original 3 products plus new entries for each user-provided product name: Beluga caviar; Jamón ibérico de bellota; Duck foie gras; Premium saffron threads; Manuka honey UMF 20+; Specialty microlot coffee; Silver Needle white tea; Madagascar Bourbon vanilla; Alba white truffle; Smoked sea salt flakes; Traditional Balsamic Vinegar of Modena DOP; Black truffle oil; Artisanal bronze-cut pasta; Aged Carnaroli rice; Wild berry gourmet jam; French whole-grain mustard; Natural fermentation artisanal panettone.",
+        "Each new product entry includes all required `Product` fields (`id`, `name`, `description`, `price`, `imageSrc`, `altText`) as defined in `frontend/src/cart/cartTypes.ts`.",
+        "Each new product has a unique, stable `id` suitable for use as a React key and cart identifier (no duplicates across the full catalog).",
+        "The Products screen (`frontend/src/pages/ProductsPage.tsx`) renders the expanded catalog by mapping over `products` with no runtime errors."
       ]
     },
     {
-      "id": "REQ-25",
-      "text": "Fix the \"Select Plan\" button behavior on the Memberships screen so that clicking it opens the plan destination in a new browser tab/window; ensure the new tab/window navigation works reliably (no-op bug), while keeping the existing membership selection persistence behavior intact.",
+      "id": "REQ-27",
+      "text": "Add distinct placeholder images for each newly added product as static assets under `frontend/public/assets/generated/`, and reference them from the corresponding `imageSrc` fields in `frontend/src/data/products.ts`.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-3"
+          "msg-1"
         ],
         "quotes": [
-          "there is  a error when I click select plan it should open another window but it doesnt"
+          "diferent images if it is posible",
+          "yes you must but do it now!!!"
         ]
       },
       "acceptanceCriteria": [
-        "On the Memberships page (frontend/src/pages/MembershipsPage.tsx), clicking \"Select Plan\" opens a new tab/window via window.open (or equivalent) rather than staying in the same tab.",
-        "The destination URL opened for each plan is mapped correctly using these exact URLs: Simple: https://le-gourmand.tiendup.com/p/membresia-simple, Normal: https://le-gourmand.tiendup.com/p/suscripcion-normal, Premium: https://le-gourmand.tiendup.com/p/membresia-premium.",
-        "After clicking \"Select Plan\", the app still performs the existing membership selection mutation (persisting membership type for the signed-in user) and continues to show \"Current Plan\" when appropriate.",
-        "If the user is not signed in, the existing sign-in prompt/login flow still occurs; the new tab/window behavior does not break the login flow or crash the page.",
-        "No Stripe/checkout/payment processing is added; the change is limited to opening the external plan URL in a new tab/window and maintaining the existing membership selection logic."
+        "For each newly added product, `imageSrc` points to a unique path under `/assets/generated/` and the referenced file exists under `frontend/public/assets/generated/`.",
+        "All new product images load correctly in the Products screen (no broken image links).",
+        "Each new product includes a specific, descriptive `altText` that matches the product shown (not reused across multiple products)."
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "text": "Keep existing cart behavior intact so that any of the newly added products can be added to the cart from the Products screen and viewed/totaled in the Cart screen using the existing shared client-side cart state.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "add them to the products window"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking the “Add to Cart” button on any newly added product adds that product to the cart and shows the existing success toast pattern.",
+        "The Cart screen displays newly added products correctly (name, quantity, and totals behave the same as for the original products).",
+        "Removing newly added products from the cart works and updates totals correctly."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or anything under frontend/src/components/ui; compose them instead.",
-    "Backend remains single-actor; do not introduce additional canisters or services.",
-    "Use English for any user-facing text that is newly added or modified."
+    "Do not edit any files under `frontend/src/components/ui` (read-only UI components must be composed, not modified).",
+    "Do not add any backend or payment/subscription logic as part of this catalog expansion."
   ],
   "nonGoals": [
-    "Do not add payment processing, Stripe checkout, subscription creation, or any backend payment logic.",
-    "Do not redesign the app shell or change the overall navigation structure beyond adding the logo and fixing the Select Plan behavior.",
-    "Do not implement third-party authentication providers (only existing Internet Identity auth remains)."
+    "Implementing inventory, product search/filtering, categories, pagination, or checkout/payment processing.",
+    "Persisting cart contents to the backend."
   ],
   "imageRequirements": {
-    "required": [],
+    "required": [
+      "Beluga caviar placeholder product image (product-beluga-caviar.dim_1024x1024.png)",
+      "Jamón ibérico de bellota placeholder product image (product-jamon-iberico-bellota.dim_1024x1024.png)",
+      "Duck foie gras placeholder product image (product-duck-foie-gras.dim_1024x1024.png)",
+      "Premium saffron threads placeholder product image (product-saffron-threads.dim_1024x1024.png)",
+      "Manuka honey placeholder product image (product-manuka-honey-umf20.dim_1024x1024.png)",
+      "Specialty microlot coffee placeholder product image (product-microlot-coffee.dim_1024x1024.png)",
+      "Silver Needle white tea placeholder product image (product-silver-needle-tea.dim_1024x1024.png)",
+      "Madagascar Bourbon vanilla placeholder product image (product-madagascar-vanilla.dim_1024x1024.png)",
+      "Alba white truffle placeholder product image (product-alba-white-truffle.dim_1024x1024.png)",
+      "Smoked sea salt flakes placeholder product image (product-smoked-sea-salt-flakes.dim_1024x1024.png)",
+      "Traditional balsamic vinegar placeholder product image (product-traditional-balsamic-vinegar-modena-dop.dim_1024x1024.png)",
+      "Black truffle oil placeholder product image (product-black-truffle-oil.dim_1024x1024.png)",
+      "Artisanal bronze-cut pasta placeholder product image (product-bronze-cut-pasta.dim_1024x1024.png)",
+      "Aged Carnaroli rice placeholder product image (product-aged-carnaroli-rice.dim_1024x1024.png)",
+      "Wild berry gourmet jam placeholder product image (product-wild-berry-jam.dim_1024x1024.png)",
+      "French whole-grain mustard placeholder product image (product-french-whole-grain-mustard.dim_1024x1024.png)",
+      "Artisanal panettone placeholder product image (product-artisanal-panettone.dim_1024x1024.png)"
+    ],
     "edits": []
   }
 }

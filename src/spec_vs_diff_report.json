@@ -1,26 +1,41 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-10T02:20:02.865Z",
-  "summary": "REQ-25 appears implemented by opening the correct external plan URLs in a new tab via `window.open` while still persisting membership selection. REQ-24 is partially implemented in `AppShell` (logo rendered with English alt text and sizing), but the actual static asset file \"logo big.png\" is not shown as added in the diff summary.",
+  "generatedAt": "2026-02-10T17:59:34.327Z",
+  "summary": "The diff expands the static products list and updates ProductsPage to render products and add-to-cart with a success toast, but the required new placeholder image assets under `frontend/public/assets/generated/` are not shown as added, and the truncated `products.ts` prevents confirming that all specified new products (and their required fields/unique IDs) are present.",
   "missing_requirements": [
     {
-      "id": "REQ-24",
-      "requirement": "Include the uploaded file \"logo big.png\" in the frontend static assets (served directly by the frontend, not via backend).",
-      "reason": "`AppShell` references `/assets/logo big.png`, but the diff summary does not show the image file being added anywhere in the repository, so the asset may be missing and the path may 404 at runtime.",
+      "id": "REQ-26",
+      "requirement": "Add new entries for each user-provided gourmet product name (in addition to the original 3) in `frontend/src/data/products.ts`, each including all required Product fields and unique stable IDs.",
+      "reason": "`frontend/src/data/products.ts` is truncated in the diff; only some of the new products are visible (up through “Alba White Truffle”), so it cannot be verified that all required product names were added and that each includes all required fields with unique IDs across the full catalog.",
       "evidence": [
-        "frontend/src/components/AppShell.tsx (references: src=\"/assets/logo big.png\")",
-        "File diff summary: ADDED FILES list does not include \"logo big.png\""
+        "frontend/src/data/products.ts (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-27",
+      "requirement": "Add distinct placeholder image files for each newly added product under `frontend/public/assets/generated/` and reference them via `/assets/generated/...` in `imageSrc` fields.",
+      "reason": "No new files were added in the diff summary (ADDED FILES: none), so the required image assets under `frontend/public/assets/generated/` are not evidenced as existing/added even though `imageSrc` paths reference `/assets/generated/...`.",
+      "evidence": [
+        "File diff summary: ADDED FILES: none",
+        "frontend/src/data/products.ts (references `/assets/generated/...`)"
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "requirement": "Ensure newly added products can be added to cart and correctly displayed/totaled/removed in the Cart screen with existing shared client-side cart state.",
+      "reason": "While `ProductsPage.tsx` shows add-to-cart being called with a success toast, there is no diff evidence for the Cart screen behavior (display, totals, removal) specifically working with the newly added products.",
+      "evidence": [
+        "frontend/src/pages/ProductsPage.tsx"
       ]
     }
   ],
   "hallucinated_features": [],
-  "confidence": 0.74,
+  "confidence": 0.62,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/components/AppShell.tsx",
-    "frontend/src/lib/membershipPlanUrls.ts",
-    "frontend/src/pages/MembershipsPage.tsx",
+    "frontend/src/data/products.ts",
+    "frontend/src/pages/ProductsPage.tsx",
     "project_state.json"
   ]
 }
